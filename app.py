@@ -15,7 +15,7 @@ def hseb_m3ayir(t3arud, nqat, t7wilat, tklfa):
 
 def l3ib():
     st.title("📊 تحليلة الأداء التسويقي")
-    st.write("دخل معلومات الحملة باش نشوفو شنو واقع.")
+    st.markdown("<div style='text-align: right;'>دخل معلومات الحملة باش نشوفو شنو واقع.</div>", unsafe_allow_html=True)
 
     with st.expander("📥 دخل المعلومات", expanded=True):
         s1, s2 = st.columns(2)
@@ -39,6 +39,7 @@ def l3ib():
             s4.metric("تكلفة التحويل (CPA)", f"${tklfa_t7wil:.2f}", help="التكلفة ديال كل زبون مكتسب.")
 
         st.subheader("📈 نصائح وتحليلات")
+        st.markdown("<div style='text-align: right;'>", unsafe_allow_html=True)
 
         idarat = []
         
@@ -63,6 +64,8 @@ def l3ib():
 
         for ida in idarat:
             st.write(ida)
+        
+        st.markdown("</div>", unsafe_allow_html=True)
 
 if __name__ == "__main__":
     l3ib()
