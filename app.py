@@ -1,70 +1,68 @@
 import streamlit as st
 
-def calculate_kpis(impressions, clicks, conversions, cost):
-    """Calculates key marketing performance indicators (KPIs)."""
-    if impressions == 0:
-        ctr = 0
+def hseb_m3ayir(t3arud, nqat, t7wilat, tklfa):
+    """كيحسب المعايير الأساسية ديال الحملة التسويقية."""
+    if t3arud == 0:
+        nisb_lnaqr = 0
     else:
-        ctr = (clicks / impressions) * 100
+        nisb_lnaqr = (nqat / t3arud) * 100
 
-    cpc = (cost / clicks) if clicks > 0 else 0
-    conversion_rate = (conversions / clicks) * 100 if clicks > 0 else 0
-    cpa = (cost / conversions) if conversions > 0 else 0
+    tklfa_nqta = (tklfa / nqat) if nqat > 0 else 0
+    nisb_t7wil = (t7wilat / nqat) * 100 if nqat > 0 else 0
+    tklfa_t7wil = (tklfa / t7wilat) if t7wilat > 0 else 0
 
-    return ctr, cpc, conversion_rate, cpa
+    return nisb_lnaqr, tklfa_nqta, nisb_t7wil, tklfa_t7wil
 
-def main():
-    st.title("📊 Marketing Performance Analyzer")
-    st.write("Enter your campaign details below to analyze key performance metrics.")
+def l3ib():
+    st.title("📊 تحليلة الأداء التسويقي")
+    st.write("دخل معلومات الحملة باش نشوفو شنو واقع.")
 
-    # User Inputs  
-    with st.expander("📥 Enter Campaign Data", expanded=True):
-        col1, col2 = st.columns(2)
-        with col1:
-            impressions = st.number_input("Total Impressions", min_value=0)
-            clicks = st.number_input("Total Clicks", min_value=0)
-        with col2:
-            conversions = st.number_input("Total Conversions", min_value=0)
-            cost = st.number_input("Total Cost ($)", min_value=0.0, format="%.2f")
+    with st.expander("📥 دخل المعلومات", expanded=True):
+        s1, s2 = st.columns(2)
+        with s1:
+            t3arud = st.number_input("عدد العروض", min_value=0)
+            nqat = st.number_input("عدد النقرات", min_value=0)
+        with s2:
+            t7wilat = st.number_input("عدد التحويلات", min_value=0)
+            tklfa = st.number_input("التكلفة الإجمالية ($)", min_value=0.0, format="%.2f")
 
-    if st.button("🚀 Analyze Performance"):
-        ctr, cpc, conversion_rate, cpa = calculate_kpis(impressions, clicks, conversions, cost)
+    if st.button("🚀 حلل الأداء"):
+        nisb_lnaqr, tklfa_nqta, nisb_t7wil, tklfa_t7wil = hseb_m3ayir(t3arud, nqat, t7wilat, tklfa)
 
-        with st.expander("📊 Campaign Results", expanded=True):
-            st.subheader("📌 Key Metrics")
-            col1, col2, col3, col4 = st.columns(4)
+        with st.expander("📊 النتائج", expanded=True):
+            st.subheader("📌 المعايير الأساسية")
+            s1, s2, s3, s4 = st.columns(4)
 
-            col1.metric("Click-Through Rate (CTR)", f"{ctr:.2f}%", help="The percentage of users who clicked on the ad.")
-            col2.metric("Cost Per Click (CPC)", f"${cpc:.2f}", help="How much each click costs on average.")
-            col3.metric("Conversion Rate", f"{conversion_rate:.2f}%", help="The percentage of clicks that led to a conversion.")
-            col4.metric("Cost Per Acquisition (CPA)", f"${cpa:.2f}", help="The cost to acquire a new customer.")
+            s1.metric("نسبة النقرات (CTR)", f"{nisb_lnaqr:.2f}%", help="النسبة المئوية ديال الناس لي ضغطو على الإعلان.")
+            s2.metric("تكلفة النقرة (CPC)", f"${tklfa_nqta:.2f}", help="شحال كتكلف كل نقرة فالمتوسط.")
+            s3.metric("نسبة التحويل", f"{nisb_t7wil:.2f}%", help="النسبة المئوية ديال النقرات لي تحولات لعمليات ناجحة.")
+            s4.metric("تكلفة التحويل (CPA)", f"${tklfa_t7wil:.2f}", help="التكلفة ديال كل زبون مكتسب.")
 
-        # Performance Interpretation  
-        st.subheader("📈 Insights & Recommendations")
+        st.subheader("📈 نصائح وتحليلات")
 
-        insights = []
+        idarat = []
         
-        if ctr >= 3:
-            insights.append("✅ **Great CTR!** Your ad is engaging well with your audience.")
-        elif 1 <= ctr < 3:
-            insights.append("⚠️ **Decent CTR.** Consider improving your ad creatives or targeting.")
+        if nisb_lnaqr >= 3:
+            idarat.append("✅ **النسبة زوينة!** الإعلان ديالك خدام مزيان.")
+        elif 1 <= nisb_lnaqr < 3:
+            idarat.append("⚠️ **النسبة وسطية.** حاول تحسن التصميم أو الاستهداف.")
         else:
-            insights.append("❌ **Low CTR.** Try optimizing your ad visuals and messaging.")
+            idarat.append("❌ **النسبة ضعيفة.** خاصك تزيد تحسن المحتوى ديالك.")
 
-        if conversion_rate >= 5:
-            insights.append("✅ **Excellent Conversion Rate!** Your landing page and offer are performing well.")
-        elif 2 <= conversion_rate < 5:
-            insights.append("⚠️ **Average Conversion Rate.** You might want to A/B test different landing pages.")
+        if nisb_t7wil >= 5:
+            idarat.append("✅ **معدل تحويل ممتاز!** العرض ديالك خدام مزيان.")
+        elif 2 <= nisb_t7wil < 5:
+            idarat.append("⚠️ **معدل تحويل متوسط.** جرب A/B testing.")
         else:
-            insights.append("❌ **Low Conversion Rate.** Check for friction in your conversion process.")
+            idarat.append("❌ **معدل ضعيف.** شوف فين كاين المشكل.")
 
-        if cpa < 50:
-            insights.append("✅ **Good CPA!** Your cost per conversion is within a profitable range.")
+        if tklfa_t7wil < 50:
+            idarat.append("✅ **تكلفة زوينة!** الأمور مزيانة.")
         else:
-            insights.append("⚠️ **High CPA.** Consider optimizing your ads or refining your target audience.")
+            idarat.append("⚠️ **تكلفة عالية.** خاصك تحسين الاستهداف.")
 
-        for insight in insights:
-            st.write(insight)
+        for ida in idarat:
+            st.write(ida)
 
 if __name__ == "__main__":
-    main()
+    l3ib()
